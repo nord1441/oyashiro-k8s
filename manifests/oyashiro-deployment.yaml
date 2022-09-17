@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: oyashiro-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sengu-toolkit-docker
+  template:
+    metadata:
+      labels:
+        app: sengu-toolkit-docker
+    spec:
+      containers:
+      - name: sengu-toolkit-docker-container
+        image: nord14541/sengu-toolkit-docker:0.3

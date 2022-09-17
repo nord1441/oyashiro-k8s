@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: oyashiro-pod
+spec:
+  containers:
+  - name: sengu-toolkit-docker-container
+    image: nord14541/sengu-toolkit-docker:0.3

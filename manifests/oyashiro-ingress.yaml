@@ -4,9 +4,16 @@ metadata:
   name: oyashiro-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/auth-tls-verify-client: "on"
+    nginx.ingress.kubernetes.io/auth-tls-secret: "default/ca-secret"
+    nginx.ingress.kubernetes.io/auth-tls-verify-depth: "1"
+    nginx.ingress.kubernetes.io/auth-tls-pass-certificate-to-upstream: "true"
+    namespace: default
 spec:
+  ingressClassName: nginx
   rules:
-  - http:
+  - host: desktop.norden-rechner.com 
+    http:
       paths:
       - path: /
         pathType: Prefix
@@ -15,3 +22,7 @@ spec:
             name: oyashiro-service
             port:
               number: 80
+  tls:
+  - hosts:
+    - desktop.norden-rechner.com
+    secretName: tls-secret

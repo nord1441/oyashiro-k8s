@@ -1,6 +1,14 @@
 #!/bin/bash
 
-DIR="$1"
-kubectl create secret generic ca-secret --from-file=tls.crt=$DIR/server.crt --from-file=tls.key=$DIR/server.key --from-file=ca.crt=$DIR/ca.crt
+SECRETS="$1"
+rm -rf manifest-deploy
+cp -r manifests manifests-deploy
+bash replace.bash "$SECRETS" "@DOMAIN"
+bash replace.bash "$SECRETS" "@MAIL"
+bash replace.bash "$SECRETS" "@REPO"
+bash replace.bash "$SECRETS" "@CLIENTID"
+bash replace.bash "$SECRETS" "@CLIENTSECRET"
+bash replace.bash "$SECRETS" "@COOKIESECRET"
 kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.1/deploy/static/provider/cloud/deploy.yaml
-kubectl apply -f manifests/
+kubectl apply -f manifests-deploy/
+kubectl apply -f manifests-deploy/foreign/

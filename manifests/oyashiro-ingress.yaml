@@ -44,4 +44,4 @@ spec:
   tls:
   - hosts:
     - @DOMAIN
-    secretName: letsencrypt-prod
+    secretName: letsencrypt-prod-tls

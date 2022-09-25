@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SECRETS="$1"
-rm -rf manifest-deploy
+rm -rf manifests-deploy
 cp -r manifests manifests-deploy
 bash replace.bash "$SECRETS" "@DOMAIN"
 bash replace.bash "$SECRETS" "@MAIL"

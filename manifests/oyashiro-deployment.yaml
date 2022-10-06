@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
       - name: sengu-toolkit-docker-container
-        image: nord14541/sengu-toolkit-docker:0.3
+        image: nord14541/sengu-toolkit-docker:0.4

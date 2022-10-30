@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: journalgen
+spec:
+  schedule: "0 21 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: gkeep
+            image: nord14541/journalgen-googlekeep:0.1
+            env:
+              - name: JRNL_GKEEP_UNAME
+                valueFrom:
+                  secretKeyRef:
+                    name: gkeepauth
+                    key: gkeep-uname
+              - name: JRNL_GKEEP_PW
+                valueFrom:
+                  secretKeyRef:
+                    name: gkeepauth
+                    key: gkeep-pw
+          restartPolicy: Never

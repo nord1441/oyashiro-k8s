@@ -22,4 +22,9 @@ spec:
                   secretKeyRef:
                     name: gkeepauth
                     key: gkeep-pw
+              - name: TZ
+                valueFrom:
+                  configMapKeyRef:
+                    name: locale
+                    key: timezone
           restartPolicy: Never

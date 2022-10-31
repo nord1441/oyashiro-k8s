@@ -25,6 +25,12 @@ spec:
         volumeMounts:
         - mountPath: /home/oyashiro_user
           name: home
+        env:
+        - name: TZ
+          valueFrom:
+            configMapKeyRef:
+              name: locale
+              key: timezone 
       - name: syncthing-container
         image: syncthing/syncthing
         volumeMounts:

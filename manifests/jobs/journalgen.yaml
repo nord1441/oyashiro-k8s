@@ -27,4 +27,22 @@ spec:
                   configMapKeyRef:
                     name: locale
                     key: timezone
+          - name: snote
+            image: nord14541/journalgen-simplenote:0.1
+            env:
+              - name: JRNL_SNOTE_UNAME
+                valueFrom:
+                  secretKeyRef:
+                    name: snoteauth
+                    key: snote-uname
+              - name: JRNL_SNOTE_PW
+                valueFrom:
+                  secretKeyRef:
+                    name: snoteauth
+                    key: snote-pw
+              - name: TZ
+                valueFrom:
+                  configMapKeyRef:
+                    name: locale
+                    key: timezone
           restartPolicy: Never

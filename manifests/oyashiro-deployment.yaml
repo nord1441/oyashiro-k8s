@@ -14,14 +14,16 @@ spec:
     spec:
       initContainers:
       - name: sengu-toolkit-docker-container-copyhome
-        image: nord14541/sengu-toolkit-docker:0.4
+        image: nord14541/sengu-toolkit-docker:latest
+        imagePullPolicy: Always
         volumeMounts:
         - mountPath: /home/newuser
           name: home
         command: ['sh', '-c', 'cp -r /home/oyashiro_user/.config /home/newuser']
       containers:
       - name: sengu-toolkit-docker-container
-        image: nord14541/sengu-toolkit-docker:0.4
+        image: nord14541/sengu-toolkit-docker:latest
+        imagePullPolicy: Always
         volumeMounts:
         - mountPath: /home/oyashiro_user
           name: home

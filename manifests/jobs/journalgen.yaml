@@ -11,6 +11,7 @@ spec:
           containers:
           - name: gkeep
             image: nord14541/journalgen-googlekeep:0.1
+            imagePullPolicy: Always
             env:
               - name: JRNL_GKEEP_UNAME
                 valueFrom:
@@ -28,7 +29,8 @@ spec:
                     name: locale
                     key: timezone
           - name: snote
-            image: nord14541/journalgen-simplenote:0.1
+            image: nord14541/journalgen-simplenote:0.2
+            imagePullPolicy: Always
             env:
               - name: JRNL_SNOTE_UNAME
                 valueFrom:

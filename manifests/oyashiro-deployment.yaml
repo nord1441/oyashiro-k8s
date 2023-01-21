@@ -33,6 +33,8 @@ spec:
             configMapKeyRef:
               name: locale
               key: timezone 
+        - name: DOCKER_HOST
+          value: tcp://localhost:2375
       - name: resilio-container
         image: resilio/sync
         volumeMounts:
@@ -54,6 +56,20 @@ spec:
             configMapKeyRef:
               name: id
               key: gid 
+      - name: dind-daemon
+        image: docker:19.03-dind
+        env:
+          - name: DOCKER_TLS_CERTDIR
+            value: ""
+        volumeMounts:
+        - mountPath: /home/oyashiro_user
+          name: home
+        resources:
+          requests:
+            cpu: 20m
+            memory: 512Mi
+        securityContext:
+          privileged: true
       volumes:
       - name: home
         persistentVolumeClaim:

@@ -33,11 +33,27 @@ spec:
             configMapKeyRef:
               name: locale
               key: timezone 
-      - name: syncthing-container
-        image: syncthing/syncthing
+      - name: resilio-container
+        image: resilio/sync
         volumeMounts:
-        - mountPath: /var/syncthing
+        - mountPath: /mnt/sync
           name: home
+        env:
+        - name: TZ
+          valueFrom:
+            configMapKeyRef:
+              name: locale
+              key: timezone 
+        - name: PUID
+          valueFrom:
+            configMapKeyRef:
+              name: id
+              key: uid 
+        - name: PGID
+          valueFrom:
+            configMapKeyRef:
+              name: id
+              key: gid 
       volumes:
       - name: home
         persistentVolumeClaim:

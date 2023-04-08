@@ -1,7 +1,8 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: locale
+  name: id
   namespace: oyashiro
 data:
-  timezone: "Asia/Tokyo"
+  uid: "1000"
+  gid: "1000"
